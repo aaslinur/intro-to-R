@@ -58,5 +58,4 @@ This repository contains the materials for a two-session "Introduction to R" cou
 
 ## Contact
 
-Aasli Abdi Nur
-[aasli.nur@sociology.ox.ac.uk](aasli.nur@sociology.ox.ac.uk)
+- Aasli Abdi Nur: [aasli.nur@sociology.ox.ac.uk](aasli.nur@sociology.ox.ac.uk)
