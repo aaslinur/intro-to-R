@@ -58,4 +58,4 @@ This repository contains the materials for a two-session "Introduction to R" cou
 
 ## Contact
 
-[aasli.nur@sociology.ox.ac.uk]
+[aasli.nur@sociology.ox.ac.uk](aasli.nur@sociology.ox.ac.uk)
