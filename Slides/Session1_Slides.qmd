@@ -9,7 +9,6 @@ format:
   revealjs:
     slide-number: true
     show-slide-number: all
-  pdf: default
 ---
 
 ## Welcome to "Intro to `R`"
