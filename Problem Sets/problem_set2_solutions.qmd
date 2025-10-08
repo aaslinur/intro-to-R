@@ -1,7 +1,6 @@
 ---
 title: "Problem Set 2"
 subtitle: "Introduction to R | University of Oxford Sociology"
-author: "Aasli Abdi Nur"
 format: pdf
 execute:
   echo: true
