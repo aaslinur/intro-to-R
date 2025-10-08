@@ -1,0 +1,996 @@
+---
+title: |
+    | Introduction to R
+    | Session 1
+subtitle: "Department of Sociology | University of Oxford"
+author: "Aasli Abdi Nur"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+format:
+  revealjs:
+    slide-number: true
+    show-slide-number: all
+  pdf: default
+---
+
+## Welcome to "Intro to `R`"
+
+```{r}
+## library packages - this will be hidden 
+library(tidyverse)
+library(here)
+```
+
+-   Two sessions:
+
+    -   Thursday, October 9th, 1pm - 4pm
+
+    -   Friday, October 10th, 9:30am - 12:30pm
+
+-   Course website:
+
+    -   <https://github.com/aaslinur/intro-to-R>
+    -   Slides, exercises, and solutions
+
+
+## Instructors {.smaller}
+
+-   **Instructor**
+
+    -   **Aasli Abdi Nur**
+    
+        -   Postdoctoral Research Fellow, Computational Demography
+        
+        -   Dept. of Sociology, Leverhulme Centre for Demographic Science, Nuffield College
+        
+        -   Contact: <aasli.nur@sociology.ox.ac.uk>
+
+. . .
+
+-   **Teaching Assistants**
+
+    -   **Laura Leone**, DPhil Student
+    -   **Jordan Rothschild**, DPhil Student 
+    -   **Bill Wetzel**, DPhil Student
+    
+    
+## Course Goals
+
+-   **Overview**
+
+    -   Describe why `R` is a powerful tool for social science research
+
+. . .
+
+-   **Installation**
+
+    -   Successfully install `R` and `R Studio`
+
+. . .
+
+-   **Application**
+
+    -   Introduce `R` syntax, data types, and data structures
+    
+    -   Develop a basic understanding of data manipulation and visualisation
+
+
+## Course Agenda {.smaller}
+
+-   **Session 1**
+
+    -   Module 1: Introduction to `R`, `RStudio,` and code formats
+
+    -   Module 2: `R` programming fundamentals (syntax, operators, data types, data structures, sequencing)
+
+    -   Module 3: Working with data (indexing vectors / matrices, importing data)
+
+-   **Session 2**
+
+    -   Module 4: Importing and exporting data
+
+    -   Module 5: Data manipulation (`dplyr`) and data visualization (`ggplot2`)
+
+    -   Module 6: Best practices and resources for self-study
+    
+    
+# Module 1
+
+## Introduction to `R`, `RStudio`, and Code Formats {.smaller}
+
+**Learning objectives**:
+
+-   Installing `R` and `RStudio`
+
+-   Exploring the benefits of `R` and `R Studio`
+
+-   Understanding `R` Scripts, `R` notebooks, Quarto documents
+
+
+## Installing `R` and `RStudio`
+
+-   `R` is a statistical programming language
+
+    -   Download: [https://cloud.r-project.org](https://cloud.r-project.org/)
+
+-   `RStudio` is an integrated development environment (IDE) for `R` programming
+
+    -   Download: [https://posit.co/downloads/](https://posit.co/downloads/)
+    
+
+## Exploring the benefits of `R`?
+
+-   **Cost**: free and open source - you don't need a terminal server or license.
+
+. . .
+
+-   **Flexibility**: can handle virtually any data format.
+
+. . .
+
+-   **Functionality**: powerful language for data manipulation, statistical analysis, and publication-ready data visualizations
+
+. . .
+
+-   **Reproducibility**: makes replication easy.
+
+. . .
+
+-   **Resources**: large community for support and learning.
+
+
+## Easy to simulate and plot data {.smaller}
+
+```{r}
+library(tidyverse)
+```
+
+```{r, fig.width=3, fig.height = 3, fig.align='center'}
+#| echo: true
+# Generate random data for x
+x <- rnorm(n = 3000)
+y <- 0.8 * x + rnorm(3000, 0, sqrt(1 - 0.8^2))
+
+# Create data.frame
+data_df <- data.frame(x = x, y = y)
+
+# Generate visualization 
+data_df %>% 
+  ggplot(aes(x = x, y = y)) + 
+  geom_point(alpha = 0.1) + 
+  theme_classic()
+```
+
+
+## Why `RStudio`?
+
+-   **All-in-one development environment**: streamlines coding, data visualization, and workflow
+
+. . .
+
+-   **Extensible**: supports R --- but also Python, SQL, and Git
+
+. . .
+
+-   **Rich community**: eases learning and problem-solving
+
+
+## `RStudio` panes {.smaller}
+
+```{r, echo=FALSE, fig.width=10, fig.height=7}
+library(here)
+
+knitr::include_graphics(here("Slides/Session1_Slides_files/figs/rstudio.png"))
+```
+    
+
+## Code formats: `R` Scripts vs. `R` Notebooks
+
+-   **`R` Scripts**
+
+    -   Simple: just code
+
+    -   Best for simple tasks (and multi-script pipelines)
+
+-   **`R` Notebooks (Quarto, `R` Notebook, `R` Markdown)**
+
+    -   Integrated: Mix of code, text, and outputs for easy documentation
+
+    -   Interactive: real-time code execution and output display
+
+
+## Quarto documents {.smaller}
+
+:::::: columns
+::: {.column width="40%"}
+-   "Notebook" Style: supports interactive code and text
+
+    -   Code cells: segments for code execution
+
+    -   Text chunks: annotations or explanations in Markdown format.
+
+<!-- -->
+
+-   Inline output: figures and code output display directly below the corresponding code cell
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="50%"}
+```{r, echo=FALSE, fig.width=10, fig.height=7}
+library(here)
+
+knitr::include_graphics(here("Slides/Session1_Slides_files/figs/quarto.png"))
+```
+:::
+::::::
+
+
+## Installing packages {.smaller}
+
+::::: columns
+::: {.column width="40%"}
+-   Packages: pre-built code and functions.
+
+-   Packages are generally installed from the Comprehensive R Archive Network (CRAN)
+
+**Install:** new packages
+
+```{r}
+#| echo: true
+#| eval: false
+install.packages("tidyverse")
+```
+
+**Library**: load installed packages
+
+```{r}
+#| echo: true
+#| eval: false
+library(tidyverse)
+```
+:::
+
+::: {.column width="50%"}
+```{r, echo=FALSE, fig.width=6, fig.height=10, fig.cap = "YaRrr! The Pirates Guide to R. Nathaniel D. Phillips, 2018."}
+library(here)
+knitr::include_graphics(here("Slides/Session1_Slides_files/figs/lightbulb_analogy.png"))
+```
+:::
+:::::
+
+
+## Running code {.smaller}
+
+-   Run all code in a quarto document (or `R` script, or `R` notebook)
+
+    -   Exception: install packages, quick checks in console
+
+-   To run a single line of code in a code cell
+
+    -   Cursor over line, **`Ctrl + Enter`** (Windows/Linux) or **`Cmd + Enter`** (Mac).
+
+-   To run a full code cell (or script)
+
+    -   **`Ctrl + Shift + Enter`** (Windows/Linux) or **`Cmd + Shift + Enter`** (Mac).
+
+
+## Live coding demo {.smaller}
+
+-   Demo of creating a new Quarto document and running code in a code cell
+-   Your turn next...
+
+
+## In-class exercise 0
+
+-   Create a new quarto document
+
+    -   `File -> New File -> Quarto Document -> Create`
+
+-   Create a new code cell
+
+    -   `Insert -> Executable cell -> R`
+
+-   Practice running code below:
+
+```{r}
+#| echo: true
+3+3
+
+print("Thank you for attending the first session!")
+```
+
+
+# Module 2
+
+## `R` programming fundamentals
+
+**Learning objectives**:
+
+-   Comprehend R objects and functions
+
+-   Master basic syntax, including comments, assignment, and operators
+
+-   Understand data structures and types in R
+
+## Objects {.smaller}
+
+::::: columns
+::: {.column width="50%"}
+-   Everything in R is an object
+    -   **Vectors**: Ordered collection of same type
+
+    -   **Data Frames**: Table of columns and rows
+
+    -   **Function**: Reusable code block
+
+    -   **List**: Ordered collection of objects
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+## Objects in R
+
+## Numeric like `1`, `2.5`
+x <- 2.5
+  
+## Character: Text strings like `"hello"`
+y <- "hello"
+
+## Boolean: `TRUE`, `FALSE`
+z <- TRUE
+
+## Vectors
+vec1 <- c(1, 2, 3)
+vec2 <- c("a", "b", "c")
+
+## data.frames 
+df <- data.frame(vec1, vec2)
+```
+:::
+:::::
+
+
+## Functions {.smaller}
+
+-   Built-in "base" functions
+
+```{r}
+#| echo: true
+## Functions in R
+result_sqrt <- sqrt(25)
+result_sqrt
+```
+
+-   Custom, user-defined functions
+
+```{r}
+#| echo: true
+# User-Defined Functions: Custom functions
+my_function <- function(a, b) {
+  return(a^2 + b)
+}
+
+my_function(2, 3)
+```
+
+-   Functions from packages
+
+```{r}
+#| echo: true
+# User-Defined Functions: Custom functions
+
+library(here) ## library package here
+here() ## run custom "here" function to print out working directory 
+```
+
+
+## Comments
+
+-   Use **`#`** to start a single-line comment
+
+-   Comments are an important way to document code
+
+```{r}
+#| echo: true
+## Add comments 
+
+x <- 7 # assigns 1 to x
+
+## the line below won't assign 12 to x because it's commented out 
+# x <- 12
+
+x
+```
+
+
+## Assignment operators
+
+-   Use **`<-`** or `=` for assignment
+
+    -   `<-` is preferred and advised for readability
+
+-   Formally, assignment means "assign the result of the operation on the right to object on the left"
+
+```{r}
+#| echo: true
+## Add comments 
+
+x <- 7 # assigns 7 to x 
+
+## Question: what does this do? 
+y <- x 
+```
+
+
+## Arithmetic operators {.smaller}
+
+-   Addition / Subtraction
+
+```{r}
+#| echo: true
+
+## R as a calculator (# adds a comment)
+## Addition 
+10 + 3
+
+## Subtraction  
+4 - 2
+```
+
+-   Multiplication / division
+
+```{r}
+#| echo: true
+
+## Multiplication  
+4 * 3
+
+## Division
+12 / 6 
+```
+
+-   Exponents
+
+```{r}
+#| echo: true
+
+## exponents 
+10^2 ## or 10 ** 2 
+
+```
+
+
+## Comparison and logical operators {.smaller}
+
+::::: columns
+::: {.column width="50%"}
+### Operators
+
+```{r}
+data <- data.frame(
+  Operator = c("AND", "OR", "NOT", "Equal", "Not Equal", "Greater/Less Than", "Greater/Less Than or Equal", "Element-wise In"),
+  Symbol = c("&", "|", "!", "==", "!=", "> or <", ">= or <=", "%in%")
+)
+
+knitr::kable(data)
+```
+:::
+
+::: {.column width="50%"}
+### Examples
+
+```{r}
+#| echo: true
+
+## Logical operators 
+
+10 == 10
+
+9 == 10
+
+9 < 10
+
+"apple" %in% c("bananas", "oranges")
+
+"apple" %in% "bananas" | "apple" %in% "apple" 
+
+"apple" %in% "bananas" & "apple" %in% "apple" 
+
+
+```
+:::
+:::::
+
+
+## Data structures {.smaller}
+
+-   There are lots of data structures; we'll focus on `vectors` and `data frames`.
+
+    -   `Vectors`: One-dimensional arrays that hold elements of a single data type (e.g., all numeric or all character).
+
+    -   `Data frames`: Two-dimensional tables where each column can have a different data type; essentially a list of vectors of equal length.
+    
+
+## `Vectors` and `data frames` {.smaller}
+
+-   `Vector` example
+
+```{r}
+#| echo: true
+
+## Vector Example 
+vec_example <- c(1, 2, 3, 4, 5)
+
+vec_example ## prints out vec_example
+```
+
+-   `Data frame` example
+
+```{r}
+#| echo: true
+# Data.frame example 
+example_df <- data.frame(
+  ID = c(1, 2, 3, 4),
+  Name = c("Alice", "Bob", "Charlie", "David"),
+  Age = c(25, 30, 35, 40),
+  Score = c(90, 85, 88, 76)
+)
+
+example_df ## prints out df_example 
+```
+
+```{r}
+# Print the data frame
+# knitr::kable(example_df)
+```
+
+
+## Data types {.smaller}
+
+-   Each `vector` or `data frame` column can only contain one data type:
+
+    -   `Numeric`: Used for numerical values like integers or decimals.
+
+    -   `Character`: Holds text and alphanumeric characters.
+
+    -   `Logical`: Represents binary values - TRUE or FALSE.
+
+    -   `Factor`: Categorical data, either ordered or unordered, stored as levels.
+
+```{r}
+#| echo: true
+## generate vectors 
+vec1 <- c(1, 2, 3)
+vec2 <- c("a", "b", "c")
+
+## check type 
+class(vec1)
+class(vec2)
+
+```
+
+
+## `NA` (missing) values in `R`
+
+-   `NA` represents missing or undefined data.
+
+    -   Can vary by data type (e.g., `NA_character_` and `NA_integer_`)
+
+-   **`NA`** values can affect summary statistics and data visualization.
+
+-   What happens when you run the code below?
+
+```{r}
+#| echo: true
+#| eval: false 
+vec <- c(1, 2, 3, NA)
+mean(vec)
+```
+
+
+## Generating sequences in `R` {.smaller}
+
+-   Method 1: Manually write out sequence using `c()`
+
+```{r}
+#| echo: true
+## Basic 
+c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+```
+
+-   Method 2: Colon operator (`:`), creates sequences with increments of 1
+
+```{r}
+#| echo: true
+c(1:10)
+```
+
+-   Method 3: **`seq()`** Function: More flexible and allows you to specify the **`start`**, **`end`**, and **`by`** parameters.
+
+```{r}
+#| echo: true
+## seq 1-10, by = 2
+seq(1, 10, by = 2)
+```
+
+
+## Functions {.smaller}
+
+-   Function: Input arguments, performs operations on them, and returns a result
+
+-   For each of the below functions, what are the:
+
+    -   Input arguments?
+
+    -   Operations performed?
+
+    -   Results?
+
+```{r}
+#| echo: true
+
+## hint: rnorm simulates random draws from a standard normal distribution  
+random_draws <- rnorm(n = 5,
+      mean = 0,
+      sd = 1)
+
+## find the mean 
+mean(random_draws)
+
+## find the median
+median(random_draws)
+
+## find the standard deviation 
+sd(random_draws)
+```
+
+
+## Keyboard shortcuts {.smaller}
+
+Insert new code cell
+
+-   macOS: `Cmd` + `Option` + `I`
+
+-   Windows/Linux: `Ctrl` + `Alt` + `I`
+
+Run full code cell or script
+
+-   macOS: `Cmd` + `Shift` + `Enter`
+
+-   Windows/Linux: `Ctrl` + `Shift` + `enter`
+
+Assignment operator (creates **`<-`**)
+
+-   macOS: `option` + `-`
+
+-   Windows/Linux: `option` + `-`
+
+
+## Live coding demo
+
+-   Assignment (e.g., `x <- 4`)
+
+-   Logical expressions (e.g., `x > 10`)
+
+-   Creating a basic sequence
+
+-   Your turn next...
+
+
+## In-class exercise 1
+
+1.  Assign `x` and `y` to take values 3 and 4.
+2.  Assign `z` as the product of `x` and `y`.
+3.  Write code to calculate the square of 3. Assign this to a variable `three_squared`.
+4.  Write a logical expression to check if `three_squared` is greater than 10.
+5.  Write a logical expression testing whether `x` is *not* greater than 10. Use the `negate` symbol (`!`).
+
+
+## Exercise 1 solutions {.smaller}
+
+1.  Assign `x` and `y` to take values 3 and 4.
+
+```{r}
+#| echo: true
+#| 
+x <- 3
+y <- 4
+```
+
+2.  Assign `z` as the product of `x` and `y`.
+
+```{r}
+#| echo: true
+#| 
+z <- x * y
+```
+
+3.  Calculate the square of 3 and assign it to a variable called `three_squared`.
+
+```{r}
+#| echo: true
+#| 
+three_squared <- 3^2
+```
+
+4.  Write a logical expression to check if `three_squared` is greater than 10.
+
+```{r}
+#| echo: true
+#| 
+three_squared > 10
+
+```
+
+5.  Write a logical expression to test whether `three_squared` is *not* greater than 10. Use the `negate` symbol (`!`).
+
+```{r}
+#| echo: true
+!three_squared > 10
+```
+
+
+## In-class exercise 2
+
+1.  Generate vectors containing the numbers 100, 101, 102, 103, 104, and 105 using 3 different methods (e.g., **`c()`**, **`seq()`**, **`:`**). In what scenarios might each method be most convenient?
+2.  Generate a sequences of all **even** numbers between 0 and 100. Use the `seq()` function.
+3.  Create a descending sequence of numbers from 100 to 1, and assign it to a variable. Use the `seq()` function.
+
+
+## Exercise 2 solutions {.smaller}
+
+1.  Generate vectors containing the numbers 100 to 105 using three different methods (`c()`, `seq()`, `:`). Discuss the convenience of each method.
+
+```{r}
+#| echo: true
+#| 
+# Generate a vector using c() method
+vector_c <- c(100, 101, 102, 103, 104, 105)
+
+# Generate a vector using seq() method
+vector_seq <- seq(100, 105, by = 1)
+
+# Generate a vector using : operator
+vector_colon <- c(100:105) 
+```
+
+2.  Generate a sequence of all even numbers between 0 and 100. Use the `seq()` function.
+
+```{r}
+#| echo: true
+# Generate a sequence of all even numbers between 0 and 100
+even_seq <- seq(0, 100, by = 2)
+```
+
+3.  Create a descending sequence of numbers from 100 to 1, and assign it to a variable. Use the `seq()` function.
+
+```{r}
+#| echo: true
+# Create a descending sequence of numbers from 100 to 1
+desc_seq <- seq(100, 1, by = -1)
+```
+
+
+# Module 3
+
+## Working with `vectors` and `data frames`
+
+Learning objectives
+
+-   Select elements from `vectors` and columns from `data frames`
+
+-   Subset `data frames`
+
+-   Investigate characteristics of `data frames`
+
+
+## Indexing vectors
+
+-   Basic indexing
+
+```{r}
+#| echo: true
+vec <- c(1, 2, 3, 4, 5)
+first_element <- vec[1]
+first_element
+
+third_element <- vec[3]
+third_element
+```
+
+-   Conditional indexing
+
+```{r}
+#| echo: true
+vec <- seq(5, 33, by = 2)
+vec[vec > 25]
+```
+
+
+## Working with `data frames` {.smaller}
+
+-   `Data frames` are the most common and versatile data structure in `R`
+
+-   Structured as rows (observations) and columns (variables)
+
+```{r}
+#| echo: true
+test_scores <- data.frame(
+  id = c(1, 2, 3, 4, 5),
+  name = c("Alice", "Bob", "Carol", "Dave", "Emily"),
+  age = c(25, 30, 22, 28, 24),
+  gender = c("F", "M", "F", "M", "F"),
+  score = c(90, 85, 88, 92, 89)
+)
+
+knitr::kable(test_scores)
+```
+
+
+## Working with `data frames` {.smaller}
+
+-   `head()`- looks at top rows of the `data frame`
+
+-   `$` operator - access a column as a `vector`
+
+```{r}
+#| echo: true
+#| 
+## print first two rows  first row 
+head(test_scores, 2)
+
+## access name column 
+test_scores$name
+```
+
+
+## Subsetting `data frames` {.smaller}
+
+-   **Methods**:
+
+    -   **`$`**: Single column by name.
+
+    -   **`df[i, j]`**: Row **`i`** and column **`j`**.
+
+    -   **`df[i:j, k:l]`**: Rows **`i`** to **`j`** and columns **`k`** to **`l`**.
+
+-   **Conditional Subsetting**: **`df[df$age > 25, ]`**.
+
+```{r}
+#| echo: true
+## all rows, columns 1-3 
+test_scores[,1:3]
+
+## all columns, rows 4-5 
+test_scores[4:5,]
+```
+
+
+## Quiz
+
+Which rows and will this return?
+
+```{r}
+#| echo: true
+#| eval: false
+test_scores[1:3,]
+```
+
+-   Which rows and which columns will this return?
+
+```{r}
+#| echo: true
+#| eval: false
+test_scores[test_scores$score >= 90, ]
+```
+
+
+## Answers
+
+```{r}
+#| echo: true
+test_scores[1:3,]
+```
+
+```{r}
+#| echo: true
+test_scores[test_scores$score >= 90, ]
+
+```
+
+
+## Explore `data frame` characteristics
+
+Check number of rows
+
+```{r}
+#| echo: true
+## check number of rows (observations)
+nrow(test_scores)
+```
+
+Check number of columns
+
+```{r}
+#| echo: true
+## check number of columns (variables)
+ncol(test_scores)
+```
+
+Check column names
+
+```{r}
+#| echo: true
+names(test_scores)
+```
+
+
+## Live coding demo
+
+-   Generate random draws from a normal distribution using the `rnorm` function
+
+-   Subset the vector of random draws to only include certain observations
+
+-   Look at basic summary statistics
+
+
+## In-class exercise 3 {.smaller}
+
+1.  Generate a `vector` of 100 observations drawn from a normal distribution with a mean of 10 and a standard deviation of 2. Use the `rnorm` function.
+
+2.  What are the 1st, 10th, and 100th elements of this `vector`?
+
+3.  Calculate the mean of this `vector`. How does this `sample` mean relate to the `population` mean (hint: population mean = 10) of the distribution?
+
+4.  Calculate the difference between the sample mean and the population mean. Discuss the reason for the discrepancy.
+
+5.  Repeat steps 1-4 with a new sample size of 10,000. Did the difference between the sample mean and the population mean decrease? Why?
+
+
+## Exercise 3 solutions {.smaller}
+
+```{r}
+#| echo: true
+
+# Generate a sample of 1,000 draws from a normal distribution with mean = 10 and sd = 2
+sample_data_100 <- rnorm(100, 
+                     mean = 10,
+                     sd = 2)
+
+## look at 1st, 10th, and 100th element 
+sample_data_100[c(1, 10, 100)]
+
+# Calculate the mean of this sample
+sample_mean_100 <- mean(sample_data_100)
+
+# Calculate the difference between the mean of the sample and the expected value of the mean
+difference_100 <- abs(sample_mean_100 - 10)
+
+difference_100
+
+# Calculate the Z-score for the sample mean
+sample_data_10000 <- rnorm(10000, 
+                     mean = 10,
+                     sd = 2)
+
+# Calculate the mean of this sample
+sample_data_10000 <- mean(sample_data_10000)
+
+# Calculate the difference between the mean of the sample and the expected value of the mean
+sample_data_10000 <- abs(sample_data_10000 - 10)
+
+sample_data_10000
+
+```
+
+
+## Questions?
+
+-   Thanks for your attendance and participation
+
+-   Please independently complete all exercises in problem set 1 (and review solutions)
+
+-   Questions: [aasli.nur@sociology.ox.ac.uk](aasli.nur@sociology@sociology.ox.ac.uk)
