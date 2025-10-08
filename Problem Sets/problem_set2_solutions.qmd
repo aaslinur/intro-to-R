@@ -1,0 +1,227 @@
+---
+title: "Problem Set 2"
+subtitle: "Introduction to R | University of Oxford Sociology"
+author: "Aasli Abdi Nur"
+format: pdf
+execute:
+  echo: true
+---
+
+# Problem Set 2 Solutions
+
+This document contans solutions to all exercises from problem set 1. To reinforce your understanding, please try your best to complete these exercises independently before referring to the solutions.
+
+## Exercise 1: Work with Real-World Data
+
+For this exercise, download the CenSoc-Numident Demo file (as .CSV) and the accompanying codebook (as PDF) from the [Harvard Dataverse](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QVDPM9) or the [course website](https://github.com/caseybreen/intro_r/tree/main/data). The CenSoc-Numident is an individual-level data with information on mortality and sociodemographic characteristics.
+
+1.1 Read in the dataset using `read_csv()` from the tidyverse package.
+
+```{r}
+#| echo: false
+#| include: false
+library(tidyverse)
+censoc <- read_csv("../data/censoc_numident_demo_v2.1.csv")
+```
+
+```{r}
+#| eval: false
+
+## install tidyverse package if it's not already installed 
+install.packages(tidyverse)
+
+## library tidyverse, gives us the read_csv() function 
+library(tidyverse) 
+
+## read in data file 
+censoc <- fread_csv("/path/to/your/dataset.csv")
+```
+
+1.2 How many columns are in the dataset?
+
+```{r}
+## check number of columns 
+ncol(censoc)
+```
+
+1.3 How many rows are in the dataset?
+
+```{r}
+## check number of rows 
+nrow(censoc)
+```
+
+1.4 List the column names. What are a few research questions that could be addressed using this dataset?
+
+```{r}
+## print names 
+names(censoc)
+```
+
+***Answer**: This dataset has information both about sociodemographic characteristics and mortality from the `death_age` variable. This dataset could be used to study mortality disparities across major axes, such as race, gender, and socioeconomic status.*
+
+## Exercise 1: Data manipulation
+
+2.1 Filter the `censoc` data frame to include only women (sex == 2). Use the `filter()` command.
+
+```{r}
+## filter to women 
+censoc_women <- censoc %>% 
+  filter(sex == 2)
+
+```
+
+2.2 Filter the original `censoc` data.frame to only include people born between 1905 and 1920 using the `byear` variable.
+
+```{r}
+## filter to people born in 1905 to 1920 
+censoc_byear_filter <- censoc %>% 
+  filter(byear %in% 1905:1920)
+
+## filter to people born in 1905 to 1920 
+censoc_byear_filter <- censoc %>% 
+  filter(byear >= 1905 & byear <= 1920)
+```
+
+2.3 Select the columns `histid`, `death_age`, `sex`, and `ownershp` from the original censoc data.frame
+
+```{r}
+## select columns histid, death_age, sex, and ownershp 
+censoc_select_vars <- censoc %>% 
+  select(histid, death_age, sex, ownershp)
+```
+
+2.4 Calculate the average age of death for women (hint: refer to question 1).
+
+```{r}
+## calculate average age of death for women 
+censoc %>% 
+  filter(sex == 2) %>% 
+  summarize(mean(death_age))
+```
+
+## Exercise 3 - Data visualization
+
+3.1 Make a histogram of the variable `death_age`. When are most people dying?
+
+```{r}
+ggplot(data = censoc) + 
+  geom_histogram(aes(x = death_age))
+
+```
+
+***Answer**: Most people are dying approximately between the ages of 60 and 90.*
+
+3.2 Make a histogram of the variable `byear`. When are most people born?
+
+```{r}
+ggplot(data = censoc) + 
+  geom_histogram(aes(x = byear))
+```
+
+***Answer**: Most people are born between 1910 and 1930.*
+
+3.3 Recode the variable `sex` from numeric values (1, 2) to take character values ("men" and "women"). Note that 1 = men, 2 = women.
+
+```{r}
+## recode sex  
+censoc <- censoc %>% 
+  mutate(sex_recode = case_when(
+    sex == 1 ~ "men",
+    sex == 2 ~ "women"
+  ))
+
+## look at first few rows to check our recode worked 
+censoc %>% 
+  select(sex, sex_recode) %>% 
+  head()
+```
+
+3.4 Calculate the mean of of death for both men and women using `group_by()` and `summarize()`. Use the `death_age` variable. Do men or women live longer in this sample?
+
+```{r}
+## calculate mean age of death 
+censoc %>% 
+  group_by(sex) %>% 
+  summarize(mean(death_age))
+```
+
+***Answer**: The women in our sample live approximately 4.3 years longer than men.*
+
+3.5 Make a histogram of the variable `death_age` for both men and women. Use the `filter()` command.
+
+```{r}
+## filter to men 
+censoc_men <- censoc %>% 
+  filter(sex_recode == "men")
+
+## histogram for men 
+ggplot(censoc) + 
+  geom_histogram(aes(x = death_age))
+  
+## histogram for women 
+censoc_women <- censoc %>% 
+  filter(sex_recode == "women")
+
+ggplot(censoc_women) + 
+  geom_histogram(aes(x = death_age))
+```
+
+3.6 Try adding the following line to the histogram you made in question 1: `+ facet_wrap(~sex_recode)`
+
+```{r}
+## create histogram by 
+ggplot(data = censoc, aes(x = death_age)) + 
+  geom_histogram() + 
+  facet_wrap(~sex_recode)
+```
+
+## Exercise 4 - Mortality advantage of homeowners
+
+Do homeowners in the United States live longer than renters in the United States?
+
+4.1 Using the `censoc` data.frame, create a new data.frame `censoc_homeownership` that filters out any "missing" values for the `ownershp` variable (missing = 0). Use the `filter()` command.
+
+```{r}
+censoc_homeownership <- censoc %>% 
+  filter(ownershp != 0)
+```
+
+4.2 In the `censoc_homeownership` data.frame, create a new variable `homeowner` using the `mutate()` command and the `case_when()` command. Assign this new variable `homeowner` a value of "own" if `ownershp == 1` and a value of "rent" if `ownershp == 2`. Note: we can confirm the original coding of the `ownershp` variable [here](https://usa.ipums.org/usa-action/variables/OWNERSHP#codes_section).
+
+```{r}
+## create new homeowner variable
+censoc_homeownership <- censoc_homeownership %>% 
+  mutate(homeowner = case_when(
+    ownershp == 1 ~ "own",
+    ownershp == 2 ~ "rent"
+  ))
+```
+
+4.3 Make a histogram on the age of death for "homeowner" and "renter" groups using `ggplot` using the `censoc_homeownership` data.frame. Use the `+ facet_wrap(~homeowner)` command.
+
+```{r}
+ggplot(data = censoc_homeownership) + 
+  geom_histogram(aes(x = death_age)) + 
+  facet_wrap(~homeowner)
+```
+
+4.4 Calculate the average age of death for "homeowner" and "renter" groups. Which group lives longer, on average? Use the `group_by()` and `summarize()` functions. What are some possible explanations for homeowners living longer than renters in the US?
+
+```{r}
+censoc_homeownership %>% 
+  group_by(homeowner) %>% 
+  summarize(mean(death_age))
+```
+
+***Answer**: Homeowners live longer. There are lots of reasons why the homeowners in our sample might be living longer than renters. First off, it's important that we are just looking at the unadjusted difference in life expectancy between homeowners and renters. So it's possible the difference in life expectancy could have nothing to do with homeownership per se, and all driven by unmeasured confounders.*
+
+*However, there are potentially a few different pathways in which owning a home could increase longevity:*
+
+1.  *Stability: Ownership usually implies a more stable and less stressful living condition.*
+
+2.  *Neighborhood Factors: Amenities, safety, and community structures can be better in areas with more homeowners.*
+
+3.  *Wealth accumulation: homeownership is a key vessel for saving and wealth accumulation in the U.S. s*
+
+4.  *And others!*

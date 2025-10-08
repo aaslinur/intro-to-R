@@ -8,11 +8,11 @@
 <link href="Session1_Slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="Session1_Slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="Session1_Slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.555">
+  <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Aasli Abdi Nur">
   <meta name="dcterms.date" content="2025-10-08">
-  <title>quarto-inputab961250</title>
+  <title>quarto-input1739c47e3fa1d684</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -43,7 +43,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -71,7 +71,7 @@
     code span.at { color: #657422; } /* Attribute */
     code span.bn { color: #ad0000; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #20794d; } /* Char */
     code span.cn { color: #8f5902; } /* Constant */
     code span.co { color: #5e5e5e; } /* Comment */
@@ -85,7 +85,7 @@
     code span.fu { color: #4758ab; } /* Function */
     code span.im { color: #00769e; } /* Import */
     code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
     code span.op { color: #5e5e5e; } /* Operator */
     code span.ot { color: #003b4f; } /* Other */
     code span.pp { color: #ad0000; } /* Preprocessor */
@@ -621,8 +621,7 @@ Aasli Abdi Nur
 </div>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="installing-packages" class="slide level2 smaller">
 <h2>Installing packages</h2>
@@ -651,8 +650,7 @@ Aasli Abdi Nur
 </div>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="running-code" class="slide level2 smaller">
 <h2>Running code</h2>
@@ -749,8 +747,7 @@ Aasli Abdi Nur
 <span id="cb8-16"><a href=""></a><span class="do">## data.frames </span></span>
 <span id="cb8-17"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(vec1, vec2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="functions" class="slide level2 smaller">
 <h2>Functions</h2>
@@ -788,7 +785,7 @@ Aasli Abdi Nur
 <span id="cb13-3"><a href=""></a><span class="fu">library</span>(here) <span class="do">## library package here</span></span>
 <span id="cb13-4"><a href=""></a><span class="fu">here</span>() <span class="do">## run custom "here" function to print out working directory </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/sfos0581/Documents/Teaching/Intro to R"</code></pre>
+<pre><code>[1] "/Users/sfos0581/Documents/GitHub/intro-to-R"</code></pre>
 </div>
 </div>
 </section>
@@ -955,8 +952,7 @@ Aasli Abdi Nur
 <pre><code>[1] FALSE</code></pre>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="data-structures" class="slide level2 smaller">
 <h2>Data structures</h2>
@@ -1098,17 +1094,17 @@ Aasli Abdi Nur
 <span id="cb55-6"><a href=""></a><span class="do">## find the mean </span></span>
 <span id="cb55-7"><a href=""></a><span class="fu">mean</span>(random_draws)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3894232</code></pre>
+<pre><code>[1] -0.4749349</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a><span class="do">## find the median</span></span>
 <span id="cb57-2"><a href=""></a><span class="fu">median</span>(random_draws)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1991483</code></pre>
+<pre><code>[1] -0.2343382</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a><span class="do">## find the standard deviation </span></span>
 <span id="cb59-2"><a href=""></a><span class="fu">sd</span>(random_draws)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6282122</code></pre>
+<pre><code>[1] 0.828567</code></pre>
 </div>
 </div>
 </section>
@@ -1478,7 +1474,7 @@ Aasli Abdi Nur
 <span id="cb98-6"><a href=""></a><span class="do">## look at 1st, 10th, and 100th element </span></span>
 <span id="cb98-7"><a href=""></a>sample_data_100[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  8.288189 10.620105  8.776537</code></pre>
+<pre><code>[1]  7.419812 11.423463 11.026871</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href=""></a><span class="co"># Calculate the mean of this sample</span></span>
 <span id="cb100-2"><a href=""></a>sample_mean_100 <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample_data_100)</span>
@@ -1488,7 +1484,7 @@ Aasli Abdi Nur
 <span id="cb100-6"><a href=""></a></span>
 <span id="cb100-7"><a href=""></a>difference_100</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0483178</code></pre>
+<pre><code>[1] 0.2413317</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href=""></a><span class="co"># Calculate the Z-score for the sample mean</span></span>
 <span id="cb102-2"><a href=""></a>sample_data_10000 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, </span>
@@ -1503,7 +1499,7 @@ Aasli Abdi Nur
 <span id="cb102-11"><a href=""></a></span>
 <span id="cb102-12"><a href=""></a>sample_data_10000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.01960844</code></pre>
+<pre><code>[1] 0.005660123</code></pre>
 </div>
 </div>
 </section>
@@ -1800,18 +1796,7 @@ Aasli Abdi Nur
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1843,7 +1828,29 @@ Aasli Abdi Nur
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1851,7 +1858,7 @@ Aasli Abdi Nur
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
         // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
         for (var i=0; i<links.length; i++) {
           const link = links[i];
           if (!isInternal(link.href)) {
