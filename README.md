@@ -20,7 +20,7 @@ This repository contains the materials for a two-session "Introduction to R" cou
 
 **Note:** Problem Set 1 includes all in-class exercises from Session 1, and Problem Set 2 includes all in-class exercises from Session 2. Complete these problem sets independently outside of class and consult the provided solutions for review.
 
-## What's Covered?
+## Course Outline
 
 ### Session 1
 
