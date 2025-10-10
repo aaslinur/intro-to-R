@@ -11,8 +11,8 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Aasli Abdi Nur">
-  <meta name="dcterms.date" content="2025-10-08">
-  <title>quarto-inputcfb5553dc906fb6</title>
+  <meta name="dcterms.date" content="2025-10-10">
+  <title>quarto-input73da596d7bc1a5af</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -404,7 +404,7 @@ Aasli Abdi Nur
 </div>
 </div>
 
-  <p class="date">2025-10-08</p>
+  <p class="date">2025-10-10</p>
 </section>
 <section id="intro-to-r-session-2" class="slide level2">
 <h2>Intro to <code>R</code> – Session 2</h2>
@@ -534,7 +534,6 @@ Aasli Abdi Nur
 <ul>
 <li><a href="https://github.com/aaslinur/intro-to-R/">https://github.com/aaslinur/intro-to-R</a></li>
 </ul></li>
-<li><p>Short url: <a href="https://tinyurl.com/intro-r-data" class="uri">https://tinyurl.com/intro-r-data</a></p></li>
 </ul>
 </section>
 <section id="live-coding-demo" class="slide level2">
@@ -569,18 +568,23 @@ Aasli Abdi Nur
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">install.packages</span>(tidyverse) <span class="do">## only have to do this once </span></span>
 <span id="cb6-2"><a href=""></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="fragment">
 <ol start="2" type="1">
 <li>Use the <code>read_csv()</code> function to read in the dataset and assign it to the object <code>censoc</code></li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>censoc <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"censoc_numident_demo_v2.1.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
+<div class="fragment">
 <ol start="3" type="1">
 <li>Use the <code>head()</code> command to look at the first 5 rows</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">head</span>(censoc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
+<div class="fragment">
 <ol start="4" type="1">
 <li>How many columns are in the dataset?</li>
 </ol>
@@ -588,6 +592,7 @@ Aasli Abdi Nur
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">ncol</span>(censoc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 39</code></pre>
+</div>
 </div>
 </div>
 </section>
@@ -602,6 +607,7 @@ Aasli Abdi Nur
 <pre><code>[1] 85865</code></pre>
 </div>
 </div>
+<div class="fragment">
 <ol start="6" type="1">
 <li>List the column names.</li>
 </ol>
@@ -610,6 +616,7 @@ Aasli Abdi Nur
 <span id="cb13-2"><a href=""></a><span class="fu">head</span>(colnames)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "histid"    "byear"     "bmonth"    "dyear"     "dmonth"    "death_age"</code></pre>
+</div>
 </div>
 </div>
 </section></section>
@@ -732,6 +739,7 @@ Aasli Abdi Nur
 <span id="cb22-2"><a href=""></a>censoc <span class="sc">%&gt;%</span> </span>
 <span id="cb22-3"><a href=""></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="fragment">
 <ol start="2" type="1">
 <li>Filter the <code>censoc</code> data.frame to include only people born between 1905 and 1920 using the <code>byear</code> variable.</li>
 </ol>
@@ -743,6 +751,7 @@ Aasli Abdi Nur
 <span id="cb23-5"><a href=""></a><span class="do">## method 2 </span></span>
 <span id="cb23-6"><a href=""></a>censoc <span class="sc">%&gt;%</span> </span>
 <span id="cb23-7"><a href=""></a>  <span class="fu">filter</span>(byear <span class="sc">&gt;=</span> <span class="dv">1905</span> <span class="sc">&amp;</span> byear <span class="sc">&lt;=</span> <span class="dv">1920</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </section>
 <section id="exercise-2-solutions-cont." class="slide level2 smaller">
@@ -767,6 +776,7 @@ Aasli Abdi Nur
 6 A71A537B-C440-4E85-A276-334B05B723A7        82     2        1</code></pre>
 </div>
 </div>
+<div class="fragment">
 <ol start="4" type="1">
 <li>Calculate the average age of death for women (hint: refer to question 1)</li>
 </ol>
@@ -779,6 +789,7 @@ Aasli Abdi Nur
   mean_death_age_women
                  &lt;dbl&gt;
 1                 78.2</code></pre>
+</div>
 </div>
 </div>
 </section>
@@ -1047,6 +1058,7 @@ Aasli Abdi Nur
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>censoc_homeownership <span class="ot">&lt;-</span> censoc <span class="sc">%&gt;%</span> </span>
 <span id="cb42-2"><a href=""></a>  <span class="fu">filter</span>(ownershp <span class="sc">!=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="fragment">
 <ol start="2" type="1">
 <li>In the <code>censoc_homeownership</code> data.frame, create a new variable <code>homeowner</code> using the <code>mutate()</code> command and the <code>case_when()</code> command. Assign this new variable <code>homeowner</code> a value of “own” if <code>ownershp == 1</code> and a value of “rent” if <code>ownershp == 2</code>.</li>
 </ol>
@@ -1057,6 +1069,7 @@ Aasli Abdi Nur
 <span id="cb43-4"><a href=""></a>    ownershp <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"own"</span>,</span>
 <span id="cb43-5"><a href=""></a>    ownershp <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"rent"</span></span>
 <span id="cb43-6"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </section>
 <section id="exercise-4-solution-cont." class="slide level2 smaller">

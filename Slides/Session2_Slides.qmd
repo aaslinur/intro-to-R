@@ -142,8 +142,6 @@ write_csv(df, "dataset_v2.csv")
 
     -   [https://github.com/aaslinur/intro-to-R](https://github.com/aaslinur/intro-to-R/)
 
--   Short url: <https://tinyurl.com/intro-r-data>
-
 ## Live coding demo
 
 -   Downloading demo file from Github
@@ -172,6 +170,8 @@ install.packages(tidyverse) ## only have to do this once
 library(tidyverse)
 ```
 
+. . .
+
 2.  Use the `read_csv()` function to read in the dataset and assign it to the object `censoc`
 
 ```{r}
@@ -180,6 +180,8 @@ library(tidyverse)
 censoc <- read_csv("censoc_numident_demo_v2.1.csv")
 ```
 
+. . .
+
 3.  Use the `head()` command to look at the first 5 rows
 
 ```{r}
@@ -187,6 +189,8 @@ censoc <- read_csv("censoc_numident_demo_v2.1.csv")
 #| eval: false
 head(censoc)
 ```
+
+. . .
 
 4.  How many columns are in the dataset?
 
@@ -203,6 +207,8 @@ ncol(censoc)
 #| echo: true
 nrow(censoc)
 ```
+
+. . .
 
 6.  List the column names.
 
@@ -351,6 +357,8 @@ censoc %>%
 
 ```
 
+. . .
+
 2.  Filter the `censoc` data.frame to include only people born between 1905 and 1920 using the `byear` variable.
 
 ```{r}
@@ -377,6 +385,8 @@ censoc_select <- censoc %>%
 
 head(censoc_select)
 ```
+
+. . .
 
 4.  Calculate the average age of death for women (hint: refer to question 1)
 
@@ -493,6 +503,8 @@ ggplot(data = censoc) +
   geom_histogram(aes(x = death_age)) 
 ```
 
+. . .
+
 ## Exercise 3 solutions (cont.) {.smaller}
 
 2.  Make a histogram of the variable `byear`. When are most people born?
@@ -502,6 +514,7 @@ ggplot(data = censoc) +
 ggplot(data = censoc) + 
   geom_histogram(aes(x = byear)) 
 ```
+
 
 ## Exercise 3 solutions (cont.) {.smaller}
 
@@ -621,6 +634,8 @@ Do homeowners in the United States live longer than renters in the United States
 censoc_homeownership <- censoc %>% 
   filter(ownershp != 0)
 ```
+
+. . .
 
 2.  In the `censoc_homeownership` data.frame, create a new variable `homeowner` using the `mutate()` command and the `case_when()` command. Assign this new variable `homeowner` a value of "own" if `ownershp == 1` and a value of "rent" if `ownershp == 2`.
 
