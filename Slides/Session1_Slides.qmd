@@ -9,6 +9,9 @@ format:
   revealjs:
     slide-number: true
     show-slide-number: all
+knitr:
+  opts_chunk:
+    dev: ragg_png
 ---
 
 ## Welcome to "Intro to `R`"
@@ -17,13 +20,14 @@ format:
 ## library packages - this will be hidden 
 library(tidyverse)
 library(here)
+library(ragg)
 ```
 
 -   Two sessions:
 
-    -   Thursday, October 9th, 1pm - 4pm
+    -   Thursday, October 8th, 1:00pm - 4:00pm
 
-    -   Friday, October 10th, 9:30am - 12:30pm
+    -   Friday, October 9th, 9:30am - 12:30pm
 
 -   Course website:
 
