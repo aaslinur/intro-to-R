@@ -21,6 +21,7 @@ knitr:
 library(tidyverse)
 library(here)
 library(ragg)
+set.seed(123)
 ```
 
 -   Two sessions:
@@ -52,8 +53,7 @@ library(ragg)
 -   **Teaching Assistants**
 
     -   **Laura Leone**, DPhil Student
-    -   **Jordan Rothschild**, DPhil Student 
-    -   **Bill Wetzel**, DPhil Student
+    -   **Vanshika Sharan**, DPhil Student 
     
     
 ## Course Goals
@@ -366,6 +366,8 @@ result_sqrt <- sqrt(25)
 result_sqrt
 ```
 
+. . .
+
 -   Custom, user-defined functions
 
 ```{r}
@@ -377,6 +379,7 @@ my_function <- function(a, b) {
 
 my_function(2, 3)
 ```
+. . .
 
 -   Functions from packages
 
@@ -442,6 +445,8 @@ y <- x
 4 - 2
 ```
 
+. . .
+
 -   Multiplication / division
 
 ```{r}
@@ -453,6 +458,8 @@ y <- x
 ## Division
 12 / 6 
 ```
+
+. . .
 
 -   Exponents
 
@@ -529,6 +536,8 @@ vec_example <- c(1, 2, 3, 4, 5)
 vec_example ## prints out vec_example
 ```
 
+. . .
+
 -   `Data frame` example
 
 ```{r}
@@ -604,12 +613,16 @@ c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
 ```
 
+. . .
+
 -   Method 2: Colon operator (`:`), creates sequences with increments of 1
 
 ```{r}
 #| echo: true
 c(1:10)
 ```
+
+. . .
 
 -   Method 3: **`seq()`** Function: More flexible and allows you to specify the **`start`**, **`end`**, and **`by`** parameters.
 
@@ -703,6 +716,8 @@ x <- 3
 y <- 4
 ```
 
+. . .
+
 2.  Assign `z` as the product of `x` and `y`.
 
 ```{r}
@@ -710,6 +725,8 @@ y <- 4
 #| 
 z <- x * y
 ```
+
+. . .
 
 3.  Calculate the square of 3 and assign it to a variable called `three_squared`.
 
@@ -719,6 +736,8 @@ z <- x * y
 three_squared <- 3^2
 ```
 
+. . .
+
 4.  Write a logical expression to check if `three_squared` is greater than 10.
 
 ```{r}
@@ -727,6 +746,8 @@ three_squared <- 3^2
 three_squared > 10
 
 ```
+
+. . .
 
 5.  Write a logical expression to test whether `three_squared` is *not* greater than 10. Use the `negate` symbol (`!`).
 
@@ -760,6 +781,8 @@ vector_seq <- seq(100, 105, by = 1)
 vector_colon <- c(100:105) 
 ```
 
+. . .
+
 2.  Generate a sequence of all even numbers between 0 and 100. Use the `seq()` function.
 
 ```{r}
@@ -767,6 +790,8 @@ vector_colon <- c(100:105)
 # Generate a sequence of all even numbers between 0 and 100
 even_seq <- seq(0, 100, by = 2)
 ```
+
+. . .
 
 3.  Create a descending sequence of numbers from 100 to 1, and assign it to a variable. Use the `seq()` function.
 
@@ -803,6 +828,8 @@ first_element
 third_element <- vec[3]
 third_element
 ```
+
+. . .
 
 -   Conditional indexing
 
@@ -898,6 +925,8 @@ test_scores[test_scores$score >= 90, ]
 test_scores[1:3,]
 ```
 
+. . .
+
 ```{r}
 #| echo: true
 test_scores[test_scores$score >= 90, ]
@@ -915,6 +944,8 @@ Check number of rows
 nrow(test_scores)
 ```
 
+. . .
+
 Check number of columns
 
 ```{r}
@@ -922,6 +953,8 @@ Check number of columns
 ## check number of columns (variables)
 ncol(test_scores)
 ```
+
+. . .
 
 Check column names
 
@@ -958,35 +991,57 @@ names(test_scores)
 ```{r}
 #| echo: true
 
-# Generate a sample of 1,000 draws from a normal distribution with mean = 10 and sd = 2
+# Generate a sample of 100 draws from a normal distribution with mean = 10 and sd = 2
 sample_data_100 <- rnorm(100, 
-                     mean = 10,
-                     sd = 2)
+                         mean = 10,
+                         sd = 2)
+```
 
-## look at 1st, 10th, and 100th element 
+. . .
+
+```{r}
+#| echo: true
+## look at 1st, 10th, and 100th element
 sample_data_100[c(1, 10, 100)]
+```
 
+. . .
+
+```{r}
+#| echo: true
 # Calculate the mean of this sample
 sample_mean_100 <- mean(sample_data_100)
 
-# Calculate the difference between the mean of the sample and the expected value of the mean
+# Calculate the difference between the sample mean and the expected value of the mean
 difference_100 <- abs(sample_mean_100 - 10)
 
 difference_100
+```
 
-# Calculate the Z-score for the sample mean
+## Exercise 3 solutions (continued) {.smaller}
+
+```{r}
+#| echo: true
+## Repeat with 10,000 draws
 sample_data_10000 <- rnorm(10000, 
-                     mean = 10,
-                     sd = 2)
+                           mean = 10,
+                           sd = 2)
 
-# Calculate the mean of this sample
-sample_data_10000 <- mean(sample_data_10000)
+## look at 1st, 10th, and 100th element
+sample_data_10000[c(1, 10, 100)]
+```
 
-# Calculate the difference between the mean of the sample and the expected value of the mean
-sample_data_10000 <- abs(sample_data_10000 - 10)
+. . .
 
-sample_data_10000
+```{r}
+#| echo: true
+## mean of this sample
+sample_mean_10000 <- mean(sample_data_10000)
 
+## difference between the sample mean and the population mean
+difference_10000 <- abs(sample_mean_10000 - 10)
+
+difference_10000
 ```
 
 
@@ -996,4 +1051,4 @@ sample_data_10000
 
 -   Please independently complete all exercises in problem set 1 (and review solutions)
 
--   Questions: [aasli.nur@sociology.ox.ac.uk](aasli.nur@sociology@sociology.ox.ac.uk)
+-   Questions: [aasli.nur@sociology.ox.ac.uk](<aasli.nur@sociology@sociology.ox.ac.uk>)
